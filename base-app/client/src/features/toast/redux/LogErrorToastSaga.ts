@@ -11,12 +11,16 @@ const logErrorToast = (title: string) => {
   console.error("Got error toast!", title);
 };
 
+export const sendToAnalytics = (title: string): void => {
+  // presumably this would send the event to some analytics engine
+};
+
 export function* logErrorToasts({
   payload,
 }: PayloadAction<ToastOptions>): SagaIterator {
   const { title, status } = payload;
   if (status === "error") {
-    yield call(logErrorToast, title);
+    yield call(sendToAnalytics, title);
   }
   yield put(showToast({ title, status }));
 }

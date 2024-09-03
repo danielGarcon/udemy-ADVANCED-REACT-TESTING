@@ -1,11 +1,14 @@
 /* eslint-disable no-param-reassign */
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createAction } from "@reduxjs/toolkit";
 
 import { ToastOptions } from "../types";
 
 export type ToastState = {
   toastOptions: ToastOptions | null;
 };
+
+// In toastSlice.js
+
 
 const createToastSlice = (initialState: ToastState) =>
   createSlice({
@@ -20,7 +23,8 @@ const createToastSlice = (initialState: ToastState) =>
       },
     },
   });
-
+  
+export const startToast = createAction<ToastOptions>("startToast");
 const toastSlice = createToastSlice({ toastOptions: null });
 export const { showToast, resetToast } = toastSlice.actions;
 export default toastSlice.reducer;
